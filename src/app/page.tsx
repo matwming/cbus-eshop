@@ -9,7 +9,6 @@ import {useAtom} from "jotai";
 
 export default function Home() {
     const [selectedCategory] = useAtom(selectCategoryAtom);
-    const [cart, setCart] = useAtom(cartAtom);
 
     const {data, isLoading, isError, refetch} = useGetProducts();
     const filteredProducts = data?.filter(p => {
@@ -33,10 +32,7 @@ export default function Home() {
             <Checkbox/>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
                 {filteredProducts?.map((p) => (
-                    <ProductCard key={p.id} product={p} onAddToCart={(p)=>{
-                        const result = (new Map([...cart])).set(p.id, { ...p, quantity: 1 });
-                        setCart(()=>result);
-                    }} />
+                    <ProductCard key={p.id} product={p}/>
                 ))}
             </div>
         </div>

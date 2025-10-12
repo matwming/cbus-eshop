@@ -6,11 +6,10 @@ import Rating from "@/app/components/ui/rating";
 import Link from "next/link";
 import {useAtom} from "jotai";
 import {cartAtom} from "@/app/components/states";
-import {Quantity} from "@/app/components/ui/quantity";
+import {ProductButtons} from "@/app/components/ui/productButtons";
 
 type Props = {
     product: Product;
-    onAddToCart?: (p: Product) => void;
 };
 
 export const currency = new Intl.NumberFormat('en-AU', {
@@ -19,8 +18,7 @@ export const currency = new Intl.NumberFormat('en-AU', {
     maximumFractionDigits: 2,
 });
 
-export const ProductCard = ({ product, onAddToCart }: Props) => {
-    const [cart, setCart] = useAtom(cartAtom);
+export const ProductCard = ({ product }: Props) => {
     return (
             <motion.article
                 layout
@@ -82,16 +80,7 @@ export const ProductCard = ({ product, onAddToCart }: Props) => {
                     </p>
 
                     <div className="pt-2">
-                        {cart.has(product.id) ? <Quantity productId={product.id}/> : <motion.button
-                            whileTap={{ scale: 0.98 }}
-                            whileHover={{ y: -1 }}
-                            onClick={() => onAddToCart?.(product)}
-                            className="w-full rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-zinc-800 active:bg-zinc-900/90 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
-                            aria-label={`Add ${product.title} to cart for ${currency.format(product.price)}`}
-                        >
-                            Add to cart
-                        </motion.button>}
-
+                        <ProductButtons product={product}/>
                     </div>
                 </div>
             </motion.article>

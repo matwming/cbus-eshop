@@ -6,6 +6,7 @@ import Rating from '@/app/components/ui/rating'
 import {useRouter} from 'next/navigation'
 import {Product} from "@/app/components/types";
 import {currency} from "@/app/components/product";
+import {ProductButtons} from "@/app/components/ui/productButtons";
 
 export const ProductDetailsPage = ({product}: {product:Product}) => {
     const router = useRouter()
@@ -145,16 +146,8 @@ export const ProductDetailsPage = ({product}: {product:Product}) => {
                             </div>
 
                             {/* Actions */}
-                            <div className="flex flex-col gap-3 sm:flex-row" data-testid='add-to-cart'>
-                                <motion.button
-                                    whileHover={{y: -1}}
-                                    whileTap={{scale: 0.98}}
-                                    className="w-full rounded-xl bg-zinc-900 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-zinc-800 active:bg-zinc-900/90 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
-                                    aria-label={`Add ${product.title} to cart for ${currency.format(product.price)}`}
-                                    onClick={() =>{}}
-                                >
-                                    Add to cart
-                                </motion.button>
+                            <div className="flex flex-col gap-3 sm:flex-row " data-testid='add-to-cart' style={{color:'black'}}>
+                                <ProductButtons product={product}/>
                             </div>
                         </motion.div>
                     </div>
