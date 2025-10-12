@@ -4,6 +4,9 @@ import { motion } from 'framer-motion';
 import {Product} from "@/app/components/types";
 import Rating from "@/app/components/ui/rating";
 import Link from "next/link";
+import {useAtom} from "jotai";
+import {cartAtom} from "@/app/components/states";
+import {Quantity} from "@/app/components/ui/quantity";
 
 type Props = {
     product: Product;
@@ -17,8 +20,8 @@ export const currency = new Intl.NumberFormat('en-AU', {
 });
 
 export const ProductCard = ({ product, onAddToCart }: Props) => {
+    const [cart, setCart] = useAtom(cartAtom);
     return (
-        <Link href={`/product-detail/${product.id}`} data-testid="product-link">
             <motion.article
                 layout
                 initial={{ opacity: 0, y: 12 }}
@@ -35,12 +38,14 @@ export const ProductCard = ({ product, onAddToCart }: Props) => {
                     whileHover={{ scale: 1.01 }}
                     transition={{ type: 'spring', stiffness: 200, damping: 20 }}
                 >
+                    <Link href={`/product-detail/${product.id}`} data-testid="product-link">
                     <img
                         src={product.image}
                         alt={product.title}
                         className="h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-[1.03]"
                         loading="lazy"
                     />
+                    </Link>
                     <span
                         className="absolute left-3 top-3 rounded-full bg-zinc-900/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm dark:bg-zinc-100/10"
                         aria-label={`Category ${product.category}`}
@@ -77,7 +82,7 @@ export const ProductCard = ({ product, onAddToCart }: Props) => {
                     </p>
 
                     <div className="pt-2">
-                        <motion.button
+                        {cart.has(product.id) ? <Quantity productId={product.id}/> : <motion.button
                             whileTap={{ scale: 0.98 }}
                             whileHover={{ y: -1 }}
                             onClick={() => onAddToCart?.(product)}
@@ -85,11 +90,10 @@ export const ProductCard = ({ product, onAddToCart }: Props) => {
                             aria-label={`Add ${product.title} to cart for ${currency.format(product.price)}`}
                         >
                             Add to cart
-                        </motion.button>
+                        </motion.button>}
+
                     </div>
                 </div>
             </motion.article>
-        </Link>
-
     );
 }

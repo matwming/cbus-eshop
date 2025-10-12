@@ -4,11 +4,13 @@ import {ProductListSkeleton} from "@/app/components/loading";
 import {ErrorScreen} from "@/app/components/error";
 import {ProductCard} from "@/app/components/product";
 import {Checkbox} from "@/app/components/ui/checkbox";
-import {selectCategoryAtom} from "@/app/components/states";
+import {cartAtom, selectCategoryAtom} from "@/app/components/states";
 import {useAtom} from "jotai";
 
 export default function Home() {
     const [selectedCategory] = useAtom(selectCategoryAtom);
+    const [cart, setCart] = useAtom(cartAtom);
+
     const {data, isLoading, isError, refetch} = useGetProducts();
     const filteredProducts = data?.filter(p => {
         if(selectedCategory.length === 0){
@@ -31,7 +33,10 @@ export default function Home() {
             <Checkbox/>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
                 {filteredProducts?.map((p) => (
-                    <ProductCard key={p.id} product={p} onAddToCart={()=>{}} />
+                    <ProductCard key={p.id} product={p} onAddToCart={(p)=>{
+                        const result = (new Map([...cart])).set(p.id, { ...p, quantity: 1 });
+                        setCart(()=>result);
+                    }} />
                 ))}
             </div>
         </div>
