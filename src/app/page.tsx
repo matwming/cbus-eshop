@@ -3,9 +3,20 @@ import {useGetProducts} from "@/app/queryHooks";
 import {ProductListSkeleton} from "@/app/components/loading";
 import {ErrorScreen} from "@/app/components/error";
 import {ProductCard} from "@/app/components/product";
+import {Checkbox} from "@/app/components/ui/checkbox";
+import {selectCategoryAtom} from "@/app/components/states";
+import {useAtom} from "jotai";
 
 export default function Home() {
+    const [selectedCategory] = useAtom(selectCategoryAtom);
     const {data, isLoading, isError, refetch} = useGetProducts();
+    const filteredProducts = data?.filter(p => {
+        if(selectedCategory.length === 0){
+            return true;
+        } else {
+            return selectedCategory.includes(p.category)
+        }
+    });
 
     if (isError) {
         return <ErrorScreen retry={refetch}/>;
@@ -16,10 +27,15 @@ export default function Home() {
     }
 
     if (data) {
-        return  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-            {data.map((p) => (
-                <ProductCard key={p.id} product={p} onAddToCart={()=>{}} />
-            ))}
+        return  <div>
+            <Checkbox/>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+                {filteredProducts?.map((p) => (
+                    <ProductCard key={p.id} product={p} onAddToCart={()=>{}} />
+                ))}
+            </div>
         </div>
+
+
     }
 }
