@@ -1,5 +1,6 @@
 import {useAtom} from "jotai";
 import {cartAtom} from "@/app/components/states";
+import {Minus, Plus} from "lucide-react";
 
 export const Quantity = ({productId}:{productId:number}) => {
     const [cart, setCart] = useAtom(cartAtom);
@@ -9,7 +10,8 @@ export const Quantity = ({productId}:{productId:number}) => {
         setCart((prev) => {
             const next = new Map([...prev]);
             const current = next.get(productId) ?? { quantity: 0 };
-            next.set(productId, { ...current, quantity: Math.max(0, current.quantity -1) });
+            const qty = (current.quantity ?? 0) - 1;
+            next.set(productId, { ...current, quantity: Math.max(0, qty) });
             if(next.get(productId)?.quantity === 0){
                 next.delete(productId);
             }
@@ -21,7 +23,8 @@ export const Quantity = ({productId}:{productId:number}) => {
         setCart((prev) => {
             const next = new Map(prev);
             const current = next.get(productId) ?? { quantity: 0 };
-            next.set(productId, { ...current, quantity: current.quantity +1 });
+            const qty = (current.quantity ?? 0) + 1;
+            next.set(productId, { ...current, quantity: qty });
             return next;
         });
     };
@@ -32,7 +35,8 @@ export const Quantity = ({productId}:{productId:number}) => {
             type="button"
             aria-label="Decrease quantity"
             className="w-10 h-10 grid place-items-center select-none hover:bg-zinc-100 dark:hover:bg-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-400"
-        >−
+        >
+            <Minus className="h-4 w-4" aria-hidden />
         </button>
 
         <div
@@ -45,7 +49,8 @@ export const Quantity = ({productId}:{productId:number}) => {
             type="button"
             aria-label="Increase quantity"
             className="w-10 h-10 grid place-items-center select-none hover:bg-zinc-100 dark:hover:bg-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-400"
-        >+
+        >
+            <Plus className="h-4 w-4" aria-hidden />
         </button>
     </div>
 }
