@@ -1,11 +1,12 @@
 import {useQuery} from "@tanstack/react-query";
+import {Product} from "@/app/components/types";
 
 const apiRoot = process.env.NEXT_PUBLIC_API_ROOT;
 
 const productsPath = '/products';
 
 export const useGetProducts = () => {
-    const {data, isLoading, isError, refetch} = useQuery({
+    const {data, isLoading, isError, refetch} = useQuery<Product[]>({
         queryKey: ['products'],
         queryFn: async () => {
             const res = await fetch(`${apiRoot}${productsPath}`);
