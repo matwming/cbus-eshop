@@ -18,3 +18,17 @@ export const useGetProducts = () => {
     });
     return {data, isLoading, isError, refetch};
 }
+
+export const useGetProductDetail = (id:string) => {
+    const {data, isLoading, isError, refetch} = useQuery<Product>({
+        queryKey: ['product_id'],
+        queryFn: async () => {
+            const res = await fetch(`${apiRoot}${productsPath}/${id}`);
+            if (!res.ok) {
+                throw new Error(`Failed /products: ${res.status}`);
+            }
+            return res.json();
+        }
+    });
+    return {data, isLoading, isError, refetch};
+}
