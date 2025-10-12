@@ -6,4 +6,5 @@ export type Product = {
     price: number;
     title: string;
     rating: {rate: number, count: number}
+    quantity?: number;
 }
