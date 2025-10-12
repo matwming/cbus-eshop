@@ -7,6 +7,7 @@ import {Checkbox} from "@/app/components/ui/checkbox";
 import {cartAtom, selectCategoryAtom} from "@/app/components/states";
 import {useAtom} from "jotai";
 import {Cart} from "@/app/components/ui/cart";
+import {ScrollToBottom} from "@/app/components/utils/scrollToBottom";
 
 export default function Home() {
     const [selectedCategory] = useAtom(selectCategoryAtom);
@@ -35,15 +36,15 @@ export default function Home() {
                 ? 'grid-cols-[minmax(0,1fr)_320px] md:grid-cols-[minmax(0,1fr)_360px]'
                 : 'grid-cols-1'
         }`}>
-            <div className={'space-y-6'}>
+            <div className={'space-y-6 relative'}>
                 <Checkbox/>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
                     {filteredProducts?.map((p) => (
                         <ProductCard key={p.id} product={p}/>
                     ))}
                 </div>
+                <ScrollToBottom/>
             </div>
-
             { cart.size > 0 && <Cart/>}
         </div>
 

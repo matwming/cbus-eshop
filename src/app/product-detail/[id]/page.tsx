@@ -6,6 +6,7 @@ import {ProductDetailsPage} from './component/productDetail';
 import {useAtom} from "jotai";
 import {cartAtom} from "@/app/components/states";
 import {Cart} from "@/app/components/ui/cart";
+import {ProductListSkeleton} from "@/app/components/loading";
 export default function ProductDetail() {
     const params = useParams<{id:string}>();
     const [cart] = useAtom(cartAtom);
@@ -17,7 +18,7 @@ export default function ProductDetail() {
     }
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <ProductListSkeleton count={1}/>;
     }
 
     if(data){
