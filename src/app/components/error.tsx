@@ -9,11 +9,11 @@ export const ErrorScreen=({retry}: { retry: () => void})=>{
             <main
                 role="main"
                 aria-labelledby="error-title"
-                className="relative min-h-screen w-full overflow-hidden bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900 text-slate-900 dark:text-slate-100 flex items-center justify-center p-6"
+                className="relative min-h-screen w-full overflow-hidden from-slate-50 to-white dark:bg-zinc-900 text-slate-900 dark:text-slate-100 flex items-center justify-center p-6"
             >
                 <motion.div
                     aria-hidden
-                    className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-rose-400/20 blur-3xl dark:bg-rose-500/15"
+                    className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full"
                     initial={{ opacity: 0, scale: 0.8, x: -40, y: -40 }}
                     animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
                     transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
@@ -102,7 +102,7 @@ export const ErrorScreen=({retry}: { retry: () => void})=>{
                         transition={{ duration: 0.6, delay: 0.4 }}
                         data-testid="contact-support"
                     >
-                        <div className="relative isolate overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-gradient-to-r from-rose-100 via-fuchsia-100 to-indigo-100 dark:from-rose-950 dark:via-fuchsia-900/30 dark:to-indigo-950/20 p-6">
+                        <div className="relative isolate overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 dark:bg-indigo-500/15 p-6">
                             <p className="text-sm text-slate-700/80 dark:text-slate-200/80">
                                 If the issue continues, please contact support.
                             </p>
