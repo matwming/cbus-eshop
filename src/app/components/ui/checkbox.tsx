@@ -14,9 +14,11 @@ export const Checkbox = () => {
         className="m-2 rounded-2xl border border-zinc-700 bg-black p-3 sm:p-4
         text-zinc-50 shadow ring-1 ring-black/5 backdrop-blur"
     >
-        <legend className="px-1 text-xs font-semibold uppercase tracking-wide text-indigo-800/90 dark:text-indigo-200/90 pt-5.5">
-            Choose categories
-        </legend>
+        <h1 className="text-xl font-bold text-indigo-800/90 dark:text-indigo-200/90">
+            <legend className="px-1 text-xs font-semibold uppercase tracking-wide text-indigo-800/90 dark:text-indigo-200/90">
+                Choose categories
+            </legend>
+        </h1>
 
         <div
             className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-4"
