@@ -1,11 +1,18 @@
 import {useAtom} from "jotai";
 import {cartAtom} from "@/app/components/states";
 import {Minus, Plus} from "lucide-react";
+import {useEffect, useRef} from "react";
 
 export const Quantity = ({productId}:{productId:number}) => {
     const [cart, setCart] = useAtom(cartAtom);
     const quantity = cart.get(productId)?.quantity ?? 0;
+    const increaseBtnRef = useRef<HTMLButtonElement>(null);
 
+    useEffect(() => {
+       if(increaseBtnRef.current){
+            increaseBtnRef.current.focus();
+        }
+    },[])
     const decrease = () => {
         setCart((prev) => {
             const next = new Map([...prev]);
@@ -46,6 +53,7 @@ export const Quantity = ({productId}:{productId:number}) => {
 
         <button
             onClick={increase}
+            ref={increaseBtnRef}
             type="button"
             aria-label="Increase quantity"
             className="w-10 h-10 grid place-items-center select-none hover:bg-zinc-100 dark:hover:bg-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-400"
