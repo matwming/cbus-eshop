@@ -123,9 +123,6 @@ export const ProductDetailsPage = ({product}: {product:Product}) => {
                                     </p>
                                     <div className="flex items-center gap-3" data-testid='rating'>
                                         <Rating rate={product.rating.rate} count={product.rating.count}/>
-                                        <span className="text-xs sm:text-sm text-indigo-700/80 dark:text-indigo-300/80">
-                      ({product.rating.count} reviews)
-                    </span>
                                     </div>
                                 </div>
                             </div>
