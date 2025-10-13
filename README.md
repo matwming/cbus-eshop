@@ -42,6 +42,11 @@ An e-commerce application built with modern web technologies, featuring product 
 
 ## Setup Instructions
 
+### 0. Create a .env file at the root and add the following contents to it.
+```bash
+NEXT_PUBLIC_API_ROOT = https://fakestoreapi.com
+```
+
 ### 1. Install Node.js
 
 Ensure you have the correct Node.js version installed:
