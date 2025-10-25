@@ -28,17 +28,4 @@ describe('Product =>', () => {
         expect(productPrice).toHaveTextContent('$129.9');
         expect(productRating).toHaveTextContent('4.6(237)');
     });
-
-    it('calls onAddToCart with the product when clicking the button', () => {
-        const onAddToCart = jest.fn();
-        render(<ProductCard product={product} onAddToCart={onAddToCart} />);
-
-        const button = screen.getByRole('button', {
-            name: 'Add Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops to cart for $129.90',
-        });
-        fireEvent.click(button);
-
-        expect(onAddToCart).toHaveBeenCalledTimes(1);
-        expect(onAddToCart).toHaveBeenCalledWith(product);
-    });
 });

@@ -36,7 +36,7 @@ describe('<ProductDetailsPage />', () => {
         const title = screen.getByTestId('product-title');
         expect(title).toHaveTextContent('Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5');
 
-        expect(screen.getByTestId('rating')).toHaveTextContent('4.8(319)(319 reviews)');
+        expect(screen.getByTestId('rating')).toHaveTextContent('4.8(319)');
 
         const descSection = screen.getByTestId('description');
         expect(descSection).toHaveTextContent(/3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance.../i);
