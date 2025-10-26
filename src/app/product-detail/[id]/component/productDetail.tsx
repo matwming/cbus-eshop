@@ -156,7 +156,6 @@ export const ProductDetailsPage = ({ product }: { product: Product }) => {
               <div
                 className="flex flex-col gap-3 sm:flex-row "
                 data-testid="add-to-cart"
-                style={{ color: "black" }}
               >
                 <ProductButtons product={product} />
               </div>

@@ -10,15 +10,14 @@ export const Checkbox = () => {
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, delay: 0.05 }}
-      className="m-2 rounded-2xl border border-zinc-700 bg-black p-3 sm:p-4
-        text-zinc-50 shadow ring-1 ring-black/5 backdrop-blur"
+      className="m-2 rounded-2xl border border-zinc-200 bg-white/95 p-3 text-zinc-900 shadow ring-1
+        ring-black/5 backdrop-blur-sm dark:border-zinc-700 dark:bg-zinc-950/70 dark:text-zinc-100 sm:p-4"
     >
-      <h1 className="text-xl font-bold text-indigo-200 dark:text-indigo-200/90">
-        <legend className="px-1 text-xs font-semibold uppercase tracking-wide text-indigo-200 dark:text-indigo-200/90">
+      <legend className="px-1 text-sm font-bold uppercase tracking-wide text-zinc-900 dark:text-zinc-50">
+        <h2 className="text-sm pt-6 font-bold uppercase tracking-wide text-zinc-900 dark:text-zinc-50">
           Choose categories
-        </legend>
-      </h1>
-
+        </h2>
+      </legend>
       <div
         className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-4"
         role="group"

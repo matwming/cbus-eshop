@@ -2,6 +2,7 @@ import { useAtom } from "jotai";
 import { cartAtom } from "@/app/components/states";
 import { Minus, Plus } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { CartItem } from "@/app/components/types";
 
 export const Quantity = ({ productId }: { productId: number }) => {
   const [cart, setCart] = useAtom(cartAtom);
@@ -16,8 +17,8 @@ export const Quantity = ({ productId }: { productId: number }) => {
   const decrease = () => {
     setCart((prev) => {
       const next = new Map([...prev]);
-      const current = next.get(productId) ?? { quantity: 0 };
-      const qty = (current.quantity ?? 0) - 1;
+      const current = next.get(productId) ?? ({ quantity: 0 } as CartItem);
+      const qty = (current?.quantity ?? 0) - 1;
       next.set(productId, { ...current, quantity: Math.max(0, qty) });
       if (next.get(productId)?.quantity === 0) {
         next.delete(productId);
@@ -29,19 +30,19 @@ export const Quantity = ({ productId }: { productId: number }) => {
   const increase = () => {
     setCart((prev) => {
       const next = new Map(prev);
-      const current = next.get(productId) ?? { quantity: 0 };
+      const current = next.get(productId) ?? ({ quantity: 0 } as CartItem);
       const qty = (current.quantity ?? 0) + 1;
       next.set(productId, { ...current, quantity: qty });
       return next;
     });
   };
   return (
-    <div className="inline-flex items-stretch rounded-xl border border-zinc-300 bg-white overflow-hidden">
+    <div className="inline-flex items-stretch rounded-xl border border-zinc-300 bg-white text-zinc-900 overflow-hidden dark:text-zinc-900">
       <button
         onClick={decrease}
         type="button"
         aria-label="Decrease quantity"
-        className="w-10 h-10 grid place-items-center select-none hover:bg-zinc-100 dark:hover:bg-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-400"
+        className="w-10 h-10 grid place-items-center select-none hover:bg-zinc-100 dark:hover:bg-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-400"
       >
         <Minus className="h-4 w-4" aria-hidden />
       </button>
@@ -55,7 +56,7 @@ export const Quantity = ({ productId }: { productId: number }) => {
         ref={increaseBtnRef}
         type="button"
         aria-label="Increase quantity"
-        className="w-10 h-10 grid place-items-center select-none hover:bg-zinc-100 dark:hover:bg-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-400"
+        className="w-10 h-10 grid place-items-center select-none hover:bg-zinc-100 dark:hover:bg-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-zinc-400"
       >
         <Plus className="h-4 w-4" aria-hidden />
       </button>
