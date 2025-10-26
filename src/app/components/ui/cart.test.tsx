@@ -3,10 +3,10 @@ import { screen, fireEvent } from "@testing-library/react";
 import { cartAtom } from "@/app/components/states";
 import { Cart } from "./cart";
 import { renderWithJotaiProvider } from "../../../../jest.setup";
-import { Product } from "@/app/components/types";
+import type { CartItem, Product } from "@/app/components/types";
 
 jest.mock("@/app/components/ui/productButtons", () => ({
-  ProductButtons: ({ product }: { product: any }) => (
+  ProductButtons: ({ product }: { product: CartItem }) => (
     <div
       data-testid="product-buttons"
       data-id={product?.id}
@@ -22,7 +22,7 @@ const p1 = {
   price: 19.99,
   quantity: 2,
   image: "https://img.local/gadget.png",
-} as Partial<Product>;
+} as CartItem;
 
 const p2 = {
   id: 2,
@@ -30,7 +30,7 @@ const p2 = {
   price: 100,
   quantity: 1,
   image: "https://img.local/ring.png",
-} as Partial<Product>;
+} as CartItem;
 
 describe("Cart", () => {
   it("shows empty state and $0.00 subtotal when cart is empty", () => {

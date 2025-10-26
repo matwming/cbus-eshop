@@ -3,10 +3,12 @@ import { screen, fireEvent } from "@testing-library/react";
 import { cartAtom } from "@/app/components/states";
 import { ProductButtons } from "./productButtons";
 import { renderWithJotaiProvider } from "../../../../jest.setup";
-import { Product } from "@/app/components/types";
+import type { CartItem } from "@/app/components/types";
 
 jest.mock("lucide-react", () => ({
-  ShoppingCart: (p: any) => <svg data-testid="cart-icon" {...p} />,
+  ShoppingCart: (
+    p: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
+  ) => <svg data-testid="cart-icon" {...p} />,
 }));
 
 jest.mock("@/app/components/ui/quantity", () => ({
@@ -15,7 +17,7 @@ jest.mock("@/app/components/ui/quantity", () => ({
   ),
 }));
 
-export const sampleProduct: Product = {
+export const sampleProduct: CartItem = {
   id: 1,
   title: "Cool Gadget",
   price: 19.99,

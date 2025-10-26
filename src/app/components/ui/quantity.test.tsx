@@ -5,8 +5,8 @@ import { renderWithJotaiProvider } from "../../../../jest.setup";
 import { cartAtom } from "@/app/components/states";
 
 jest.mock("lucide-react", () => ({
-  Minus: (props: any) => <svg data-testid="minus-icon" {...props} />,
-  Plus: (props: any) => <svg data-testid="plus-icon" {...props} />,
+  Minus: () => <svg data-testid="minus-icon" />,
+  Plus: () => <svg data-testid="plus-icon" />,
 }));
 
 const getDecBtn = () =>
