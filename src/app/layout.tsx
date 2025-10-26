@@ -1,5 +1,5 @@
 import "./globals.css";
-import {Providers} from "@/app/providers";
+import { Providers } from "@/app/providers";
 
 export default function RootLayout({
   children,
@@ -9,9 +9,7 @@ export default function RootLayout({
   return (
     <html lang="en" title="Cbus E-commerce">
       <body>
-         <Providers>
-             {children}
-         </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

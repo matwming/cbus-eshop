@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "jest --coverage",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "test:clear-cache": "jest --clearCache"
   },
   "dependencies": {
@@ -33,9 +34,12 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0",
     "msw": "^1.3.3",
+    "prettier": "^3.6.2",
     "tailwindcss": "^4.1.14",
     "ts-jest": "^29.4.5",
     "ts-node": "^10.9.2",
