@@ -13,6 +13,17 @@ const customJestConfig = {
     "^@/(.*)$": "<rootDir>/src/$1",
   },
   testMatch: ["**/?(*.)+(spec|test).(ts|tsx)"],
+  testPathIgnorePatterns: [
+    "/node_modules/",
+    "/.next/",
+    "/mocks/", // Exclude mocks folder
+  ],
+  coveragePathIgnorePatterns: [
+    "/node_modules/",
+    "/.next/",
+    "/mocks/",
+    "/coverage/",
+  ],
 };
 
 export default createJestConfig(customJestConfig);
