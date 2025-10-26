@@ -52,7 +52,7 @@ export const Cart = () => {
                                     <p className="truncate text-sm font-medium text-zinc-100">
                                         {p.title}
                                     </p>
-                                    <p className="text-xs text-zinc-400">
+                                    <p className="text-xs text-zinc-400" data-testid={`unit-${id}-price`}>
                                         {currency.format(p.price)}
                                     </p>
 
@@ -61,7 +61,7 @@ export const Cart = () => {
                                     </div>
                                 </div>
 
-                                <div className="ml-2 self-start text-sm font-semibold text-zinc-100">
+                                <div className="ml-2 self-start text-sm font-semibold text-zinc-100" data-testid={`total-${id}-price`}>
                                     {currency.format((p.price ?? 0) * (p.quantity ?? 0))}
                                 </div>
                             </div>
@@ -72,7 +72,7 @@ export const Cart = () => {
                     <footer className="mt-3 border-t border-zinc-800 pt-3">
                         <div className="mb-3 flex items-center justify-between text-sm text-zinc-200">
                             <span>Subtotal</span>
-                            <span className="font-semibold">{currency.format(subtotal)}</span>
+                            <span className="font-semibold" data-testid="total-price">{currency.format(subtotal)}</span>
                         </div>
                         <button className="w-full rounded-xl bg-amber-500 px-4 py-2.5 text-sm font-semibold text-black shadow hover:bg-amber-400">
                             Checkout

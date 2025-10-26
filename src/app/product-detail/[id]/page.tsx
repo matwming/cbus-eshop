@@ -30,8 +30,5 @@ export default function ProductDetail() {
             <ProductDetailsPage product={data}/>
             { cart.size > 0 && <Cart/>}
         </div>
-
-
     }
-
 }
