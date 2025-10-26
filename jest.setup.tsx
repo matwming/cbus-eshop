@@ -6,23 +6,22 @@ import { render } from "@testing-library/react";
 import React from "react";
 import { createStore, Provider } from "jotai";
 
-export const renderWithProviders = (ui: React.ReactNode) => {
-  function renderWithRQ(ui: React.ReactNode) {
-    const qc = new QueryClient({
-      defaultOptions: { queries: { retry: false } },
-    });
-    return render(<QueryClientProvider client={qc}>{ui}</QueryClientProvider>);
-  }
-  return renderWithRQ(ui);
-};
-
 export const renderWithJotaiProvider = (
   ui: React.ReactElement,
-  states: any[],
+  states?: any[],
 ) => {
   const store = createStore();
-  states.forEach((state) => store.set(state[0], state[1]));
-  render(<Provider store={store}>{ui}</Provider>);
+  if (states) {
+    states.forEach((state) => store.set(state[0], state[1]));
+  }
+  const qc = new QueryClient({
+    defaultOptions: { queries: { retry: false } },
+  });
+  render(
+    <QueryClientProvider client={qc}>
+      <Provider store={store}>{ui}</Provider>
+    </QueryClientProvider>,
+  );
   return { store };
 };
 

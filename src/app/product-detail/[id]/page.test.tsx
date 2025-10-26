@@ -2,7 +2,7 @@ import { server } from "@/mocks/node";
 import { rest } from "msw";
 import { screen, waitFor } from "@testing-library/react";
 import ProductDetail from "./page";
-import { renderWithProviders } from "../../../../jest.setup";
+import { renderWithJotaiProvider } from "../../../../jest.setup";
 
 // Mock next/navigation
 const mockBack = jest.fn();
@@ -25,7 +25,7 @@ describe("ProductDetail Page", () => {
     );
 
     // Act
-    renderWithProviders(<ProductDetail />);
+    renderWithJotaiProvider(<ProductDetail />);
 
     // Assert
     expect(screen.getByText(/Loading products/i)).toBeInTheDocument();
@@ -40,7 +40,7 @@ describe("ProductDetail Page", () => {
     );
 
     // Act
-    renderWithProviders(<ProductDetail />);
+    renderWithJotaiProvider(<ProductDetail />);
 
     // Assert
     await waitFor(() => {
@@ -73,7 +73,7 @@ describe("ProductDetail Page", () => {
     );
 
     // Act
-    renderWithProviders(<ProductDetail />);
+    renderWithJotaiProvider(<ProductDetail />);
 
     // Assert
     await waitFor(() => {
@@ -112,7 +112,7 @@ describe("ProductDetail Page", () => {
     );
 
     // Act
-    renderWithProviders(<ProductDetail />);
+    renderWithJotaiProvider(<ProductDetail />);
 
     // Assert
     await waitFor(() => {
@@ -141,7 +141,7 @@ describe("ProductDetail Page", () => {
     );
 
     // Act
-    renderWithProviders(<ProductDetail />);
+    renderWithJotaiProvider(<ProductDetail />);
 
     // Assert
     await waitFor(() => {
@@ -170,7 +170,7 @@ describe("ProductDetail Page", () => {
     );
 
     // Act
-    renderWithProviders(<ProductDetail />);
+    renderWithJotaiProvider(<ProductDetail />);
 
     // Assert
     await waitFor(() => {

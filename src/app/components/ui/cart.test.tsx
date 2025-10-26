@@ -3,7 +3,7 @@ import { screen, fireEvent } from "@testing-library/react";
 import { cartAtom } from "@/app/components/states";
 import { Cart } from "./cart";
 import { renderWithJotaiProvider } from "../../../../jest.setup";
-import type { CartItem, Product } from "@/app/components/types";
+import type { CartItem } from "@/app/components/types";
 
 jest.mock("@/app/components/ui/productButtons", () => ({
   ProductButtons: ({ product }: { product: CartItem }) => (

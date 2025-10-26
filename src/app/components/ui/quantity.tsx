@@ -6,7 +6,7 @@ import { CartItem } from "@/app/components/types";
 
 export const Quantity = ({ productId }: { productId: number }) => {
   const [cart, setCart] = useAtom(cartAtom);
-  const quantity = cart.get(productId)?.quantity ?? 0;
+  const quantity = cart.get(productId)?.quantity || 0;
   const increaseBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -17,8 +17,9 @@ export const Quantity = ({ productId }: { productId: number }) => {
   const decrease = () => {
     setCart((prev) => {
       const next = new Map([...prev]);
-      const current = next.get(productId) ?? ({ quantity: 0 } as CartItem);
-      const qty = (current?.quantity ?? 0) - 1;
+      const current = next.get(productId);
+      if (!current) return prev;
+      const qty = current.quantity - 1;
       next.set(productId, { ...current, quantity: Math.max(0, qty) });
       if (next.get(productId)?.quantity === 0) {
         next.delete(productId);
@@ -30,8 +31,9 @@ export const Quantity = ({ productId }: { productId: number }) => {
   const increase = () => {
     setCart((prev) => {
       const next = new Map(prev);
-      const current = next.get(productId) ?? ({ quantity: 0 } as CartItem);
-      const qty = (current.quantity ?? 0) + 1;
+      const current = next.get(productId);
+      if (!current) return new Map([[productId, { quantity: 1 } as CartItem]]);
+      const qty = current.quantity + 1;
       next.set(productId, { ...current, quantity: qty });
       return next;
     });

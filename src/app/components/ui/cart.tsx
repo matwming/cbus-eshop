@@ -12,7 +12,7 @@ export const Cart = () => {
   const clear = () => setCart(() => new Map());
 
   const subtotal = Array.from(cart.values()).reduce((sum, p) => {
-    return sum + (p.price ?? 0) * (p.quantity ?? 0);
+    return sum + p.price * p.quantity;
   }, 0);
 
   return (
@@ -68,7 +68,7 @@ export const Cart = () => {
                   className="ml-2 self-start text-sm font-semibold text-zinc-100"
                   data-testid={`total-${id}-price`}
                 >
-                  {currency.format((p.price ?? 0) * (p.quantity ?? 0))}
+                  {currency.format(p.price * p.quantity)}
                 </div>
               </div>
             ))}
