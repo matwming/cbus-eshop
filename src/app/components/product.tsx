@@ -4,8 +4,6 @@ import { motion } from "framer-motion";
 import { Product } from "@/app/components/types";
 import Rating from "@/app/components/ui/rating";
 import Link from "next/link";
-import { useAtom } from "jotai";
-import { cartAtom } from "@/app/components/states";
 import { ProductButtons } from "@/app/components/ui/productButtons";
 
 type Props = {

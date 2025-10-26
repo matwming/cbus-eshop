@@ -1,12 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { Product } from "@/app/components/types";
 
 const apiRoot = process.env.NEXT_PUBLIC_API_ROOT;
 
+if (!apiRoot) {
+  throw new Error("NEXT_PUBLIC_API_ROOT is not defined");
+}
+
 const productsPath = "/products";
 
-export const useGetProducts = () => {
-  const { data, isLoading, isError, refetch } = useQuery<Product[]>({
+export const useGetProducts = (): UseQueryResult<Product[], Error> => {
+  const result = useQuery<Product[]>({
     queryKey: ["products"],
     queryFn: async () => {
       const res = await fetch(`${apiRoot}${productsPath}`);
@@ -16,12 +20,15 @@ export const useGetProducts = () => {
       return res.json();
     },
   });
-  return { data, isLoading, isError, refetch };
+  return result;
 };
 
-export const useGetProductDetail = (id: string) => {
-  const { data, isLoading, isError, refetch } = useQuery<Product>({
-    queryKey: ["product_id"],
+export const useGetProductDetail = (
+  id: string,
+): UseQueryResult<Product, Error> => {
+  const result = useQuery<Product>({
+    queryKey: ["product_id", id],
+    enabled: Boolean(id),
     queryFn: async () => {
       const res = await fetch(`${apiRoot}${productsPath}/${id}`);
       if (!res.ok) {
@@ -30,5 +37,5 @@ export const useGetProductDetail = (id: string) => {
       return res.json();
     },
   });
-  return { data, isLoading, isError, refetch };
+  return result;
 };

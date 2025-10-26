@@ -1,14 +1,7 @@
 import { motion } from "motion/react";
 import { useAtom } from "jotai";
 import { selectCategoryAtom } from "@/app/components/states";
-
-//this is usually from the api
-const ALL_CATEGORIES = [
-  "electronics",
-  "jewelery",
-  "men's clothing",
-  "women's clothing",
-];
+import { ALL_CATEGORIES } from "@/app/components/types";
 
 export const Checkbox = () => {
   const [selectedCategory, setCategories] = useAtom(selectCategoryAtom);

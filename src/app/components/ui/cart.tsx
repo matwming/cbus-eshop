@@ -3,15 +3,15 @@
 import { useAtom } from "jotai";
 import { cartAtom } from "@/app/components/states";
 import { ProductButtons } from "@/app/components/ui/productButtons";
-import { Product } from "@/app/components/types";
+import type { CartItem } from "@/app/components/types";
 import { currency } from "@/app/components/product";
 
 export const Cart = () => {
   const [cart, setCart] = useAtom(cartAtom);
-  const items = Array.from(cart.entries()) as [number, Product][];
+  const items = Array.from(cart.entries()) as [number, CartItem][];
   const clear = () => setCart(() => new Map());
 
-  const subtotal = (Array.from(cart.values()) as Product[]).reduce((sum, p) => {
+  const subtotal = Array.from(cart.values()).reduce((sum, p) => {
     return sum + (p.price ?? 0) * (p.quantity ?? 0);
   }, 0);
 

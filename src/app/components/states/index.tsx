@@ -1,6 +1,6 @@
 import { atom } from "jotai";
-import { Product } from "@/app/components/types";
+import type { CartItem, Category } from "@/app/components/types";
 
-export const selectCategoryAtom = atom<string[]>([]);
+export const selectCategoryAtom = atom<Category[]>([]);
 
-export const cartAtom = atom<Map<number, Partial<Product>>>(new Map());
+export const cartAtom = atom<Map<number, CartItem>>(new Map());
